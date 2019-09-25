@@ -1,0 +1,56 @@
+target/
+bin/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+dist/
+node_modules/
+npm-debug.log*
+yarn-error.log*
+node/
+
+# IDEs
+.idea/
+jsconfig.json
+.vscode/
+
+# Typings file.
+typings/
+
+# Misc
+tmp/
+
+# Mac OSX Finder files.
+**/.DS_Store
+.DS_Store
+
+package/
+**/*pid*.log
+
+.metadata
+.recommenders
+! Module-portail/
+node_modules
+! Module-portail/
+node_modules_old

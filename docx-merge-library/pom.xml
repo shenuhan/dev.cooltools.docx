@@ -1,0 +1,64 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>dev.cooltools</groupId>
+	<artifactId>docx-merge-library</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>Library for docx fusion</name>
+	<description>Fusion docx</description>
+
+	<properties>
+		<jdk.version>11</jdk.version>
+		<java.version>11</java.version>
+
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+		
+		<docx4j.version>11.1.3</docx4j.version>
+	</properties>
+
+	<dependencies>
+		<!-- Spel -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+			<version>5.1.9.RELEASE</version>
+		</dependency>
+		<!-- dockx4j -->
+		<dependency>
+			<groupId>org.docx4j</groupId>
+			<artifactId>docx4j-core</artifactId>
+			<version>${docx4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.docx4j</groupId>
+			<artifactId>docx4j-JAXB-MOXy</artifactId>
+			<version>${docx4j.version}</version>
+		</dependency>
+<!-- Whenever available 									-->
+<!-- 		<dependency> 									-->
+<!-- 			<groupId>org.docx4j</groupId> 				-->
+<!-- 			<artifactId>docx4j-export-fo</artifactId> 	-->
+<!-- 			<version>${docx4j.version}</version> 		-->
+<!-- 		</dependency> 									-->
+		<!-- Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-simple</artifactId>
+		    <version>1.7.28</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-api</artifactId>
+		    <version>1.7.28</version>
+		</dependency>
+	</dependencies>
+</project>
