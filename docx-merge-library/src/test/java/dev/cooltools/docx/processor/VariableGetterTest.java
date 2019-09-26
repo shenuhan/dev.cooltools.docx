@@ -7,19 +7,19 @@ import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import dev.cooltools.docx.docx.operations.ParagraphOperationsTests;
-import dev.cooltools.docx.docx.operations.RowOperationsTests;
+import dev.cooltools.docx.docx.operations.ParagraphOperationsTest;
+import dev.cooltools.docx.docx.operations.RowOperationsTest;
 import dev.cooltools.docx.error.DocxProcessingException;
 import dev.cooltools.docx.service.FusionServiceFactory;
 import dev.cooltools.docx.service.Property;
 import dev.cooltools.docx.service.Property.VariableType;
 
-public class VariableGetterTests {
+public class VariableGetterTest {
 	ObjectMapper mapper = new ObjectMapper();
 	
 	@Test
 	public void commentTextOperations() throws Exception {
-		try (var in = VariableGetterTests.class.getResourceAsStream("/variable/CommentTextOperationsTest.docx")) {
+		try (var in = VariableGetterTest.class.getResourceAsStream("/variable/CommentTextOperationsTest.docx")) {
 			var properties = FusionServiceFactory.get().findAllVariables(in);
 			System.out.println(new ObjectMapper().writeValueAsString(properties));
 			
@@ -34,7 +34,7 @@ public class VariableGetterTests {
 	
 	@Test
 	public void inlineTextOperations() throws Exception {
-		try (var in = VariableGetterTests.class.getResourceAsStream("/variable/InlineTextOperationsTest.docx")) {
+		try (var in = VariableGetterTest.class.getResourceAsStream("/variable/InlineTextOperationsTest.docx")) {
 			var properties = FusionServiceFactory.get().findAllVariables(in);
 			System.out.println(new ObjectMapper().writeValueAsString(properties));
 
@@ -49,7 +49,7 @@ public class VariableGetterTests {
 	
 	@Test
 	public void blockHideShowOperations() throws Exception {
-		try (var in = VariableGetterTests.class.getResourceAsStream("/variable/HideShowOperationsTest.docx")) {
+		try (var in = VariableGetterTest.class.getResourceAsStream("/variable/HideShowOperationsTest.docx")) {
 			var properties = FusionServiceFactory.get().findAllVariables(in);
 			System.out.println(new ObjectMapper().writeValueAsString(properties));
 			Assert.assertTrue("There should be no properties", properties.isEmpty());
@@ -86,7 +86,7 @@ public class VariableGetterTests {
 	
 	@Test
 	public void blockRepeatOperations() throws Exception {
-		try (var in = VariableGetterTests.class.getResourceAsStream("/variable/RepeatOperationsTest.docx")) {
+		try (var in = VariableGetterTest.class.getResourceAsStream("/variable/RepeatOperationsTest.docx")) {
 			var properties = FusionServiceFactory.get().findAllVariables(in);
 			System.out.println(new ObjectMapper().writeValueAsString(properties));
 
@@ -108,7 +108,7 @@ public class VariableGetterTests {
 	
 	@Test
 	public void embeddedBlockRepeatOperations() throws Exception {
-		try (var in = VariableGetterTests.class.getResourceAsStream("/variable/EmbeddedRepeatOperationsTest.docx")) {
+		try (var in = VariableGetterTest.class.getResourceAsStream("/variable/EmbeddedRepeatOperationsTest.docx")) {
 			var properties = FusionServiceFactory.get().findAllVariables(in);
 			System.out.println(new ObjectMapper().writeValueAsString(properties));
 			check(properties, VariableType.String, "tree", "name");
@@ -122,7 +122,7 @@ public class VariableGetterTests {
 	
 	@Test
 	public void hideShowOperations() throws Exception {
-		try (var in = VariableGetterTests.class.getResourceAsStream("/variable/ParagraphHideShowOperationsTest.docx")) {
+		try (var in = VariableGetterTest.class.getResourceAsStream("/variable/ParagraphHideShowOperationsTest.docx")) {
 			var properties = FusionServiceFactory.get().findAllVariables(in);
 			System.out.println(new ObjectMapper().writeValueAsString(properties));
 			check(properties, VariableType.String, "test", "evaluate", "unexisting");
@@ -133,7 +133,7 @@ public class VariableGetterTests {
 	
 	@Test
 	public void repeatOperations() throws Exception {
-		try (var in = ParagraphOperationsTests.class.getResourceAsStream("/variable/RepeatOperationsTest.docx")) {
+		try (var in = ParagraphOperationsTest.class.getResourceAsStream("/variable/RepeatOperationsTest.docx")) {
 			var properties = FusionServiceFactory.get().findAllVariables(in);
 			System.out.println(new ObjectMapper().writeValueAsString(properties));
 			check(properties, VariableType.List, "emptyList");
@@ -152,7 +152,7 @@ public class VariableGetterTests {
 	
 	@Test
 	public void rowLoopOperations() throws Exception {
-		try (var in = RowOperationsTests.class.getResourceAsStream("/row/RowOperationsTest.docx")) {
+		try (var in = RowOperationsTest.class.getResourceAsStream("/row/RowOperationsTest.docx")) {
 			var properties = FusionServiceFactory.get().findAllVariables(in);
 			System.out.println(new ObjectMapper().writeValueAsString(properties));
 			

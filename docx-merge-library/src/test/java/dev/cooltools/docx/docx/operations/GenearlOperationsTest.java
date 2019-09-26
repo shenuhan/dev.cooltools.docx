@@ -16,13 +16,13 @@ import dev.cooltools.docx.error.DocxProcessingException;
 import dev.cooltools.docx.service.FusionServiceFactory;
 import dev.cooltools.docx.util.HtmlConverter;
 
-public class GenearlOperationsTests {
+public class GenearlOperationsTest {
 	ObjectMapper mapper = new ObjectMapper();
 	
 	@Test
 	public void generalOperations() throws Exception {
 		var f = File.createTempFile("GeneralOperationsTest", ".docx");
-		try (var in = GenearlOperationsTests.class.getResourceAsStream("/general/GeneralOperationsTest.docx")) {
+		try (var in = GenearlOperationsTest.class.getResourceAsStream("/general/GeneralOperationsTest.docx")) {
 			try (var out = new FileOutputStream(f)) {
 				FusionServiceFactory.get().merge(in, out, Map.of());
 			} catch (DocxProcessingException e) {

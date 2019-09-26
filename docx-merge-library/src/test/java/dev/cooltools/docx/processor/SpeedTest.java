@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dev.cooltools.docx.service.FusionServiceFactory;
 
-public class SpeedTests {
+public class SpeedTest {
 	@Test
 	public void speedTest() throws Exception {
 		String json =
@@ -55,7 +55,7 @@ public class SpeedTests {
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode node = mapper.readTree(json);
 		byte[] fileBytes;
-		try (InputStream stream = SpeedTests.class.getResourceAsStream("/LoopRowImbriqueesTest.docx")) {
+		try (InputStream stream = SpeedTest.class.getResourceAsStream("/LoopRowImbriqueesTest.docx")) {
 			try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
 				IOUtils.copy(stream, out);
 				out.flush();

@@ -17,7 +17,7 @@ import dev.cooltools.docx.error.DocxProcessingException;
 import dev.cooltools.docx.service.FusionServiceFactory;
 import dev.cooltools.docx.util.HtmlConverter;
 
-public class RowOperationsTests {
+public class RowOperationsTest {
 	ObjectMapper mapper = new ObjectMapper();
 	
 	@Test
@@ -34,7 +34,7 @@ public class RowOperationsTests {
 		);
 		
 		var f = File.createTempFile("RowOperationsTest", ".docx");
-		try (var in = RowOperationsTests.class.getResourceAsStream("/row/RowOperationsTest.docx")) {
+		try (var in = RowOperationsTest.class.getResourceAsStream("/row/RowOperationsTest.docx")) {
 			try (var out = new FileOutputStream(f)) {
 				FusionServiceFactory.get().merge(in, out, variables);
 			} catch (DocxProcessingException e) {

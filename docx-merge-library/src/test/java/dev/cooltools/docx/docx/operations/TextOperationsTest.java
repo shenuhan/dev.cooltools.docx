@@ -17,7 +17,7 @@ import dev.cooltools.docx.error.DocxProcessingException;
 import dev.cooltools.docx.service.FusionServiceFactory;
 import dev.cooltools.docx.util.HtmlConverter;
 
-public class TextOperationsTests {
+public class TextOperationsTest {
 	ObjectMapper mapper = new ObjectMapper();
 	
 	@Test
@@ -28,7 +28,7 @@ public class TextOperationsTests {
 		);
 		
 		var f = File.createTempFile("CommentTextOperationsTest", ".docx");
-		try (var in = TextOperationsTests.class.getResourceAsStream("/text/CommentTextOperationsTest.docx")) {
+		try (var in = TextOperationsTest.class.getResourceAsStream("/text/CommentTextOperationsTest.docx")) {
 			try (var out = new FileOutputStream(f)) {
 				FusionServiceFactory.get().merge(in, out, variables);
 			} catch (DocxProcessingException e) {
@@ -52,7 +52,7 @@ public class TextOperationsTests {
 		);
 		
 		var f = File.createTempFile("InlineTextOperationsTest", ".docx");
-		try (var in = TextOperationsTests.class.getResourceAsStream("/text/InlineTextOperationsTest.docx")) {
+		try (var in = TextOperationsTest.class.getResourceAsStream("/text/InlineTextOperationsTest.docx")) {
 			try (var out = new FileOutputStream(f)) {
 				FusionServiceFactory.get().merge(in, out, variables);
 			} catch (DocxProcessingException e) {
@@ -70,7 +70,7 @@ public class TextOperationsTests {
 		);
 		
 		var f = File.createTempFile("PropertyTextOperationsTest", ".docx");
-		try (var in = TextOperationsTests.class.getResourceAsStream("/text/PropertyTextOperationsTest.docx")) {
+		try (var in = TextOperationsTest.class.getResourceAsStream("/text/PropertyTextOperationsTest.docx")) {
 			try (var out = new FileOutputStream(f)) {
 				FusionServiceFactory.get().merge(in, out, variables);
 			} catch (DocxProcessingException e) {
@@ -88,7 +88,7 @@ public class TextOperationsTests {
 		);
 		
 		var f = File.createTempFile("JoinTextOperationsTest", ".docx");
-		try (var in = TextOperationsTests.class.getResourceAsStream("/text/JoinTextOperationsTest.docx")) {
+		try (var in = TextOperationsTest.class.getResourceAsStream("/text/JoinTextOperationsTest.docx")) {
 			try (var out = new FileOutputStream(f)) {
 				FusionServiceFactory.get().merge(in, out, variables);
 			} catch (DocxProcessingException e) {

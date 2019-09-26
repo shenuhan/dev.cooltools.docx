@@ -20,14 +20,14 @@ import dev.cooltools.docx.error.DocxProcessingException;
 import dev.cooltools.docx.service.FusionServiceFactory;
 import dev.cooltools.docx.util.HtmlConverter;
 
-public class BlockOperationsTests {
+public class BlockOperationsTest {
 	ObjectMapper mapper = new ObjectMapper();
 	
 	@Test
 	public void blockHideShowOperations() throws Exception {
 		var f = File.createTempFile("BlockHideShowOperationsTest", ".docx");
 
-		try (var in = BlockOperationsTests.class.getResourceAsStream("/block/HideShowOperationsTest.docx")) {
+		try (var in = BlockOperationsTest.class.getResourceAsStream("/block/HideShowOperationsTest.docx")) {
 			try (var out = new FileOutputStream(f)) {
 				FusionServiceFactory.get().merge(in, out, Collections.emptyMap());
 			} catch (DocxProcessingException e) {
@@ -72,7 +72,7 @@ public class BlockOperationsTests {
 
 			);
 
-		try (var in = ParagraphOperationsTests.class.getResourceAsStream("/block/RepeatOperationsTest.docx")) {
+		try (var in = ParagraphOperationsTest.class.getResourceAsStream("/block/RepeatOperationsTest.docx")) {
 			try (var out = new FileOutputStream(f)) {
 				FusionServiceFactory.get().merge(in, out, data);
 			} catch (DocxProcessingException e) {
@@ -148,7 +148,7 @@ public class BlockOperationsTests {
 		);
 				
 
-		try (var in = ParagraphOperationsTests.class.getResourceAsStream("/block/EmbeddedRepeatOperationsTest.docx")) {
+		try (var in = ParagraphOperationsTest.class.getResourceAsStream("/block/EmbeddedRepeatOperationsTest.docx")) {
 			try (var out = new FileOutputStream(f)) {
 				FusionServiceFactory.get().merge(in, out, data);
 			} catch (DocxProcessingException e) {

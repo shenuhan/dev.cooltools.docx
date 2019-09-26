@@ -19,14 +19,14 @@ import dev.cooltools.docx.error.DocxProcessingException;
 import dev.cooltools.docx.service.FusionServiceFactory;
 import dev.cooltools.docx.util.HtmlConverter;
 
-public class ParagraphOperationsTests {
+public class ParagraphOperationsTest {
 	ObjectMapper mapper = new ObjectMapper();
 	
 	@Test
 	public void hideShowOperations() throws Exception {
 		var f = File.createTempFile("HideShowOperationsTest", ".docx");
 
-		try (var in = ParagraphOperationsTests.class.getResourceAsStream("/paragraph/ParagraphHideShowOperationsTest.docx")) {
+		try (var in = ParagraphOperationsTest.class.getResourceAsStream("/paragraph/ParagraphHideShowOperationsTest.docx")) {
 			try (var out = new FileOutputStream(f)) {
 				FusionServiceFactory.get().merge(in, out, Collections.emptyMap());
 			} catch (DocxProcessingException e) {
@@ -58,7 +58,7 @@ public class ParagraphOperationsTests {
 					) 
 			);
 
-		try (var in = ParagraphOperationsTests.class.getResourceAsStream("/paragraph/ParagraphRepeatOperationsTest.docx")) {
+		try (var in = ParagraphOperationsTest.class.getResourceAsStream("/paragraph/ParagraphRepeatOperationsTest.docx")) {
 			try (var out = new FileOutputStream(f)) {
 				FusionServiceFactory.get().merge(in, out, data);
 			} catch (DocxProcessingException e) {

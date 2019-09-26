@@ -24,7 +24,7 @@ import dev.cooltools.docx.service.FusionException;
 import dev.cooltools.docx.service.FusionServiceFactory;
 import dev.cooltools.docx.util.HtmlConverter;
 
-public class FusionTests {
+public class FusionTest {
 	private String convertToHtml(File file) {
 		try (InputStream stream = new FileInputStream(file)) {
 			try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
@@ -40,7 +40,7 @@ public class FusionTests {
 	@Test
 	public void loopOnMultipleParagraphTest() throws Exception {
 		File file = File.createTempFile("LoopOnMultipleParagraphTest", ".docx"); //fichier de fin
-		try (InputStream stream = FusionTests.class.getResourceAsStream("/LoopOnMultipleParagraphTest.docx")) { // get template
+		try (InputStream stream = FusionTest.class.getResourceAsStream("/LoopOnMultipleParagraphTest.docx")) { // get template
 			try (OutputStream out = new FileOutputStream(file)) {
 				FusionServiceFactory.get().merge(stream, out, 
 					Collections.singletonMap(
@@ -68,7 +68,7 @@ public class FusionTests {
 	@Test
 	public void rowLoopTest() throws Exception {
 		File file = File.createTempFile("RowLoopTest", ".docx");
-		try (InputStream stream = FusionTests.class.getResourceAsStream("/RowLoopTest.docx")) {
+		try (InputStream stream = FusionTest.class.getResourceAsStream("/RowLoopTest.docx")) {
 			try (OutputStream out = new FileOutputStream(file)) {
 				FusionServiceFactory.get().merge(stream, out, Collections.singletonMap( "personne",
 						new Person("Madame", "Tarte", "Peche",
@@ -89,7 +89,7 @@ public class FusionTests {
 	@Test
 	public void loopOnEmptyParagrapheTest() throws Exception {
 		File file = File.createTempFile("LoopOnEmptyParagraphTest", ".docx");
-		try (InputStream stream = FusionTests.class.getResourceAsStream("/LoopOnEmptyParagraphTest.docx")) {
+		try (InputStream stream = FusionTest.class.getResourceAsStream("/LoopOnEmptyParagraphTest.docx")) {
 			try (OutputStream out = new FileOutputStream(file)) {
 				FusionServiceFactory.get().merge(stream, out, Collections.singletonMap(
 					"personne2",new Person("Madame", "Tarte", "Peche")
@@ -108,7 +108,7 @@ public class FusionTests {
 	@Test
 	public void loopImbriqueeParagraphTest() throws Exception {
 		File file = File.createTempFile("LoopImbriqueesTest", ".docx");
-		try (InputStream stream = FusionTests.class.getResourceAsStream("/LoopImbriqueesTest.docx")) {
+		try (InputStream stream = FusionTest.class.getResourceAsStream("/LoopImbriqueesTest.docx")) {
 			try (OutputStream out = new FileOutputStream(file)) {
 				FusionServiceFactory.get().merge(stream, out, Collections.singletonMap("personne",
 						new Person("Madame", "Tarte", "Peche",
@@ -138,7 +138,7 @@ public class FusionTests {
 	@Test
 	public void loopImbriqueeParagraphTest2() throws Exception {
 		File file = File.createTempFile("LoopImbriqueesTest", ".docx");
-		try (InputStream stream = FusionTests.class.getResourceAsStream("/LoopImbriqueesTest.docx")) {
+		try (InputStream stream = FusionTest.class.getResourceAsStream("/LoopImbriqueesTest.docx")) {
 			try (OutputStream out = new FileOutputStream(file)) {
 				FusionServiceFactory.get().merge(stream, out, Collections.singletonMap("personne",
 						new Person("Madame", "Tarte", "Peche",
@@ -168,7 +168,7 @@ public class FusionTests {
 	@Test
 	public void loopRowImbriqueeParagraphTest() throws Exception {
 		File file = File.createTempFile("LoopRowImbriqueesTest", ".docx");
-		try (InputStream stream = FusionTests.class.getResourceAsStream("/LoopRowImbriqueesTest.docx")) {
+		try (InputStream stream = FusionTest.class.getResourceAsStream("/LoopRowImbriqueesTest.docx")) {
 			try (OutputStream out = new FileOutputStream(file)) {
 				FusionServiceFactory.get().merge(stream, out, Collections.singletonMap("personne",
 						new Person("Madame", "Tarte", "Peche",
@@ -234,7 +234,7 @@ public class FusionTests {
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode node = mapper.readTree(json);
 		File file = File.createTempFile("LoopRowImbriqueesTest", ".docx");
-		try (InputStream stream = FusionTests.class.getResourceAsStream("/LoopRowImbriqueesTest.docx")) {
+		try (InputStream stream = FusionTest.class.getResourceAsStream("/LoopRowImbriqueesTest.docx")) {
 			try (OutputStream out = new FileOutputStream(file)) {
 				FusionServiceFactory.get().merge(stream, out, Collections.singletonMap("personne",node));
 			}
@@ -263,7 +263,7 @@ public class FusionTests {
 		JsonNode valuenode = mapper.readTree(value);
 		JsonNode boolvaluenode = mapper.readTree(boolvalue);
 		File file = File.createTempFile("AllDisplayTest", ".docx");
-		try (InputStream stream = FusionTests.class.getResourceAsStream("/AllDisplayTest.docx")) {
+		try (InputStream stream = FusionTest.class.getResourceAsStream("/AllDisplayTest.docx")) {
 			try (OutputStream out = new FileOutputStream(file)) {
 				FusionServiceFactory.get().merge(stream, out, Map.of(
 					"value",valuenode,
@@ -286,7 +286,7 @@ public class FusionTests {
 	public void updateTableOfContentTest()  throws Exception {
 		File file = File.createTempFile("AddTableOfContentTest", ".docx");
 		
-		try (InputStream stream = FusionTests.class.getResourceAsStream("/AddTableOfContentTest.docx")) {
+		try (InputStream stream = FusionTest.class.getResourceAsStream("/AddTableOfContentTest.docx")) {
 			try (OutputStream out = new FileOutputStream(file)) {
 				FusionServiceFactory.get().merge(stream, out, Collections.emptyMap());
 
@@ -303,7 +303,7 @@ public class FusionTests {
 	@Test
 	public void blockIfLoopRowImbriqueeParagraphTest() throws Exception {
 		File file = File.createTempFile("BlockIfLoopRowImbriqueesTest", ".docx");
-		try (InputStream stream = FusionTests.class.getResourceAsStream("/BlockIfLoopRowImbriqueesTest.docx")) {
+		try (InputStream stream = FusionTest.class.getResourceAsStream("/BlockIfLoopRowImbriqueesTest.docx")) {
 			try (OutputStream out = new FileOutputStream(file)) {
 				FusionServiceFactory.get().merge(stream, out, Collections.singletonMap("personne",
 						new Person("Madame", "Tarte", "Peche",
@@ -335,7 +335,7 @@ public class FusionTests {
 	@Test
 	public void completeExampleFusionExample() throws IOException, FusionException, DocxProcessingException {
 		File file = File.createTempFile("FusionExample", ".docx");
-		try (InputStream stream = FusionTests.class.getResourceAsStream("/FusionExample.docx")) {
+		try (InputStream stream = FusionTest.class.getResourceAsStream("/FusionExample.docx")) {
 			try (OutputStream out = new FileOutputStream(file)) {
 				FusionServiceFactory.get().merge(stream, out, Map.of(
 						"nom", "loriette",

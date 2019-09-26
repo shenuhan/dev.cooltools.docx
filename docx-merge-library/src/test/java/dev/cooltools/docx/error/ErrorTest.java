@@ -12,11 +12,11 @@ import dev.cooltools.docx.error.DocxProcessingException;
 import dev.cooltools.docx.error.ErrorType;
 import dev.cooltools.docx.service.FusionServiceFactory;
 
-public class ErrorTests {
+public class ErrorTest {
 	@Test
 	public void errorTest() throws IOException {
 		
-		try (InputStream stream = ErrorTests.class.getResourceAsStream("/error/ErrorTest.docx")) {
+		try (InputStream stream = ErrorTest.class.getResourceAsStream("/error/ErrorTest.docx")) {
 			FusionServiceFactory.get().findAllVariables(stream);
 		} catch (DocxProcessingException e) {
 			Locale.setDefault(Locale.ENGLISH);
