@@ -54,3 +54,5 @@ package/
 node_modules
 ! Module-portail/
 node_modules_old
+
+**/.~lock*
