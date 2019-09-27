@@ -2,8 +2,15 @@ language: java
 
 env:
   global:
-    - CODECOV_TOKEN="${CODECOV_TOKEN}"
+    - secure "${CODECOV_TOKEN}"
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 
+addons:
+  sonarcloud:
+    organization: "cooltools"
+    token:
+      secure: "${SONARCLOUD_TOKEN}"
+script:
+  - sonar-scanner

@@ -169,21 +169,6 @@ public class LoopManager {
 		return true;
 	}
 
-	public Boolean shouldProcessComment(Boolean previousDecision, String comment) {
-		if (currentLoop != null) {
-			boolean isEmptyLoop = currentLoop.objects.isEmpty();
-			if (isEmptyLoop) {
-				Matcher m = Pattern.compile("endloop\\('([^\\s]+)'\\)").matcher(comment);
-				if (m.find()) {
-					if (currentLoop.name.equals(m.group(1)))
-						endloop(m.group(1));
-				}
-				return false;
-			}
-		}
-		return previousDecision;
-	}
-
 	private Child getParentOfRun() {
 		if (currentTable != null)
 			return currentTable;
