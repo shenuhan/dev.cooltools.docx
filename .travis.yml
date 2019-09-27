@@ -2,7 +2,7 @@ language: java
 
 env:
   global:
-    - secure "${CODECOV_TOKEN}"
+    - secure "QQ7ckwO9qEkReClPtcKZVJ9ndnttNVhMrYsYhs/QyaCMBLK0eQKvI1Yor3kqhFAKPFShVTKt59eHMvtqJlJ8TAT9dYUfLE7dHXh812NNFekdw3ECXo6Trhon/H8Dt9v7lZ5+LWrBiXTS8k/JBlp8dyhbzXL0wCDBsXeFMMutbOB4tlcfjHCYJ3dBho7W3B/dl7sl5bB+SDLRq7PsRnP82+inHK9dqEUt+fvjNikxb4lFU8TZWSxpxsq3+DNqihetgH9MyqLO0/Hom3AuUI2MY3sOgejlZrUGz90a4jv5Fqa3LGAGqueMD+ChrzscJNgdvXz5bVkmR4/Yq0m0PisxnaTsxrj2m28+2+/lxzMlcWbIMdusjJ2nkqTbuOKC7ntmq9RPp39VakSBi3wkmzX4iqJEJyKY2mgHyDSL7d2jrlMjBtbU6kqArdC5WIY0eETYlQAsJpN7fP2nx0C2AbP1gJpij9LnoS19eSp6wujvEpDVho7E4nMYAktsZNPvEYDQcyJaFbHxSwv+himI4Pf5l6UDFrq7QwqMdBZstLx5hvj6oXbMh48gmzuMetQDK5C2cFDkvEWs+JFISJcJf0nBVdAXYMqa+9tf5mG4W7gZn3XnCvp2zcwcA3nmiNKZXlCx6KS4JYaxoBlGe1F/afVu0xpEwbYZtHFutH7Li3wl3c4="
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
