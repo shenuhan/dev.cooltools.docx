@@ -45,7 +45,7 @@ public class CommentProcessor {
 				try {
 					Object o = context.getExpressionEvaluator().evaluate(EvaluationRequester.Comment, value);
 					if (o instanceof String) {
-						display(run, o == null ? "" : o.toString());
+						display(run, (String) o);
 					} else if (o == null) {
 						display(run, "");
 					} else if (o instanceof Number) {

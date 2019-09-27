@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.expression.AccessException;
 import org.springframework.expression.BeanResolver;
@@ -30,10 +32,12 @@ import dev.cooltools.docx.core.evaluation.MapAccessor;
 import dev.cooltools.docx.core.evaluation.RootObjectDelegatorAccessor;
 import dev.cooltools.docx.error.ProblemReporter;
 import dev.cooltools.docx.service.Property;
-import dev.cooltools.docx.service.PropertyImpl;
 import dev.cooltools.docx.service.Property.VariableType;
+import dev.cooltools.docx.service.PropertyImpl;
 
 public class VariableGetterEvaluationContext implements EvaluationContext {
+	private static Logger log = LoggerFactory.getLogger(VariableGetterEvaluationContext.class);
+	
 	final private Object root;
 	final private Map<String, Object> settedVariables = new HashMap<>();
 	final private List<Property> variables;
@@ -137,7 +141,7 @@ public class VariableGetterEvaluationContext implements EvaluationContext {
 				try {
 					return objectType.getDeclaredConstructor().newInstance();
 				} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-					e.printStackTrace();
+					log.error("There was an error while instanciating a given type", e);
 					return null;
 				}
 			}

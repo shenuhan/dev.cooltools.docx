@@ -26,7 +26,7 @@ import dev.cooltools.docx.util.RunUtil;
 
 public class CommentManager {
 	public class CommentWrapper {
-		public Comments.Comment comment;
+		private Comments.Comment comment;
 		private CommentRangeStart commentRangeStart;
 		private CommentRangeEnd commentRangeEnd;
 		private R lastRun;

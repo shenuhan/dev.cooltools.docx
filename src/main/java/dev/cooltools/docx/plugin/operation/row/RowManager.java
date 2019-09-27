@@ -16,10 +16,25 @@ import dev.cooltools.docx.core.evaluation.NopeEvaluationContext;
 import dev.cooltools.docx.error.ErrorType;
 
 public class RowManager {
-	private class RowLoop {
-		public String name;
-		public List<Object> remainingObjects;
-		public List<Tr> addedRows = new ArrayList<Tr>();
+	static private class RowLoop {
+		private final String name;
+		private final List<Object> remainingObjects;
+		private final List<Tr> addedRows = new ArrayList<Tr>();
+		
+		public RowLoop(String name, Collection<Object> collectionObjects) {
+			this.name = name;
+			this.remainingObjects = new ArrayList<Object>(collectionObjects);
+		}
+
+		public String getName() {
+			return name;
+		}
+		public List<Tr> getAddedRows() {
+			return addedRows;
+		}
+		public List<Object> getRemainingObjects() {
+			return remainingObjects;
+		}
 	}
 
 	private Context context;
@@ -45,12 +60,12 @@ public class RowManager {
 
 	public void endRow(Tr tr) {
 		if (currentRowLoop != null) {
-			if (currentRowLoop.remainingObjects.isEmpty()) {
-				context.getExpressionEvaluator().removeVariable(currentRowLoop.name);
+			if (currentRowLoop.getRemainingObjects().isEmpty()) {
+				context.getExpressionEvaluator().removeVariable(currentRowLoop.getName());
 				currentRowLoop = null;
 			} else {
-				context.getExpressionEvaluator().addVariable(currentRowLoop.name, currentRowLoop.remainingObjects.remove(0));
-				context.getDocumentCrawler().addElementToCrawl(tr, currentRowLoop.addedRows.remove(0));
+				context.getExpressionEvaluator().addVariable(currentRowLoop.getName(), currentRowLoop.getRemainingObjects().remove(0));
+				context.getDocumentCrawler().addElementToCrawl(tr, currentRowLoop.getAddedRows().remove(0));
 			}
 		}
 	}
@@ -81,7 +96,7 @@ public class RowManager {
 			context.getProblemReporter().reportError(ErrorType.VariableNameNotEmpty);
 			return true;
 		}
-		if (currentRowLoop != null && !name.equals(currentRowLoop.name)) {
+		if (currentRowLoop != null && !name.equals(currentRowLoop.getName())) {
 			context.getProblemReporter().reportError(ErrorType.MultipleRowLoop);
 			return true;
 		}
@@ -95,18 +110,16 @@ public class RowManager {
 					return true;
 				}
 
-				currentRowLoop = new RowLoop();
-				currentRowLoop.name = name;
-				currentRowLoop.remainingObjects = new ArrayList<>(collectionObjects);
-				context.getExpressionEvaluator().addVariable(currentRowLoop.name, currentRowLoop.remainingObjects.remove(0));
+				currentRowLoop = new RowLoop(name, collectionObjects);
+				context.getExpressionEvaluator().addVariable(currentRowLoop.getName(), currentRowLoop.getRemainingObjects().remove(0));
 
 				Tr rowToDuplicate;
 				Tr previousRow = rowToDuplicate = currentRow;
 
-				for (int i = 0; i < currentRowLoop.remainingObjects.size(); i++) {
+				for (int i = 0; i < currentRowLoop.getRemainingObjects().size(); i++) {
 					Tr o = XmlUtils.deepCopy(rowToDuplicate);
 					context.getPostProcessor().registerAddElement(previousRow, o);
-					currentRowLoop.addedRows.add(o);
+					currentRowLoop.getAddedRows().add(o);
 					previousRow = o;
 				}
 			}

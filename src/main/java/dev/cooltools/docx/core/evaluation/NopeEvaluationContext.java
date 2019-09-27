@@ -6,6 +6,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.expression.AccessException;
 import org.springframework.expression.BeanResolver;
@@ -24,6 +26,8 @@ import org.springframework.expression.spel.support.ReflectiveMethodResolver;
 import org.springframework.expression.spel.support.ReflectivePropertyAccessor;
 
 public class NopeEvaluationContext implements EvaluationContext {
+	private static Logger log = LoggerFactory.getLogger(NopeEvaluationContext.class);
+	
 	static public class NopeObject {
 	}
 	static NopeObject nope = new NopeObject();
@@ -151,7 +155,7 @@ public class NopeEvaluationContext implements EvaluationContext {
 				try {
 					return objectType.getDeclaredConstructor().newInstance();
 				} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-					e.printStackTrace();
+					log.error("There was an error while instanciating a given type", e);
 					return null;
 				}
 			}

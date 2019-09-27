@@ -1,5 +1,10 @@
-
 # Docx merge tool
+
+
+![Travis Build Status](https://api.travis-ci.org/shenuhan/dev.cooltools.docx.svg?branch=master)
+[![codecov](https://codecov.io/gh/shenuhan/dev.cooltools.docx/branch/master/graph/badge.svg)](https://codecov.io/gh/shenuhan/dev.cooltools.docx)
+[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=shenuhan_dev.cooltools.docx&metric=alert_status)](https://sonarcloud.io/dashboard?id=shenuhan_dev.cooltools.docx)
+
 This tool is made to make it easy for someone that has no notion of developement to create docx template that can then be merge with csv files or JSON objects containing the data to merge.
 
 ## Expression

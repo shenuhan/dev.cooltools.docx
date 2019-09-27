@@ -47,13 +47,18 @@ public class PropertyManager {
 		public String getProperty() {
 			return property;
 		}
+		
+		@Override
+		public int hashCode() {
+			return begin.hashCode() ;
+		}
 
 		@Override
 		public boolean equals(Object obj) {
 			if (!(obj instanceof PropertyWrapper)) {
 				return false;
 			}
-			return begin != null && begin.equals(((PropertyWrapper) obj).begin);
+			return begin.equals(((PropertyWrapper) obj).begin);
 		}
 	}
 
