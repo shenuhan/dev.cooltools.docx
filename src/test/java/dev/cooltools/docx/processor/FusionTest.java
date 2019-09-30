@@ -4,7 +4,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
@@ -20,7 +19,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dev.cooltools.docx.error.DocxProcessingException;
-import dev.cooltools.docx.service.FusionException;
 import dev.cooltools.docx.service.FusionServiceFactory;
 import dev.cooltools.docx.util.HtmlConverter;
 
@@ -331,20 +329,4 @@ public class FusionTest {
 			Assert.assertTrue("File should contain " + checkonce + " once", content.indexOf(checkonce) > 0 && content.indexOf(checkonce) == content.lastIndexOf(checkonce));
 
 	}
-	
-	@Test
-	public void completeExampleFusionExample() throws IOException, FusionException, DocxProcessingException {
-		File file = File.createTempFile("FusionExample", ".docx");
-		try (InputStream stream = FusionTest.class.getResourceAsStream("/FusionExample.docx")) {
-			try (OutputStream out = new FileOutputStream(file)) {
-				FusionServiceFactory.get().merge(stream, out, Map.of(
-						"nom", "loriette",
-						"prenom", "lard",
-						"ville", "Moissax",
-						"Datedujour", "16/12/1981"));
-
-			}
-		}
-	}
-
 }
