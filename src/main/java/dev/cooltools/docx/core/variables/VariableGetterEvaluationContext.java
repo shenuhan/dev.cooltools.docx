@@ -28,6 +28,7 @@ import org.springframework.expression.TypedValue;
 import org.springframework.expression.spel.support.ReflectiveMethodResolver;
 import org.springframework.expression.spel.support.ReflectivePropertyAccessor;
 
+import dev.cooltools.docx.core.evaluation.DefaultTypeConverter;
 import dev.cooltools.docx.core.evaluation.MapAccessor;
 import dev.cooltools.docx.core.evaluation.RootObjectDelegatorAccessor;
 import dev.cooltools.docx.error.ProblemReporter;
@@ -102,55 +103,7 @@ public class VariableGetterEvaluationContext implements EvaluationContext {
 		var reflectiveAccessor = new ReflectivePropertyAccessor();
 		propertyAccessors.add(reflectiveAccessor);
 
-		this.typeConverter = new TypeConverter() {
-			@Override
-			public Object convertValue(Object value, TypeDescriptor sourceType, TypeDescriptor targetType) {
-				if (value instanceof Property) {
-					Property val = (Property) value;
-					if (Collection.class.isAssignableFrom(targetType.getObjectType())) {
-						val.setType(VariableType.List);
-						return Arrays.asList(val);
-					} else if (Number.class.isAssignableFrom(targetType.getObjectType())) {
-						val.setType(VariableType.Number);
-					} else if (Temporal.class.isAssignableFrom(targetType.getObjectType())) {
-						val.setType(VariableType.Date);
-					} else if (CharSequence.class.isAssignableFrom(targetType.getObjectType())) {
-						val.setType(VariableType.String);
-					} else if (Boolean.class.isAssignableFrom(targetType.getObjectType())) {
-						val.setType(VariableType.Boolean);
-					}
-				}
-				if (targetType.getObjectType().isAssignableFrom(value.getClass())) {
-					return value;
-				}
-				return getDefault(targetType.getObjectType());
-			}
-
-			private Object getDefault(Class<?> objectType) {
-				if (objectType == Boolean.class || objectType == boolean.class) {
-					return true;
-				} else if (objectType == Integer.class || objectType == int.class) {
-					return 0;
-				} else if (objectType == Long.class || objectType == long.class) {
-					return 0l;
-				} else if (objectType == Float.class || objectType == float.class) {
-					return 0f;
-				} else if (objectType == Double.class || objectType == double.class) {
-					return 0d;
-				}
-				try {
-					return objectType.getDeclaredConstructor().newInstance();
-				} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-					log.error("There was an error while instanciating a given type", e);
-					return null;
-				}
-			}
-
-			@Override
-			public boolean canConvert(TypeDescriptor sourceType, TypeDescriptor targetType) {
-				return true;
-			}
-		};
+		this.typeConverter = new DefaultTypeConverter();
 	}
 
 	@Override

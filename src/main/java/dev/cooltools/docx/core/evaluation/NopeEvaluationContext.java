@@ -54,7 +54,7 @@ public class NopeEvaluationContext implements EvaluationContext {
 				return new MethodExecutor() {
 					@Override
 					public TypedValue execute(EvaluationContext context, Object target, Object... arguments) throws AccessException {
-						return new TypedValue(new NopeObject());
+						return nopeValue;
 					}
 				};
 			}
@@ -68,7 +68,7 @@ public class NopeEvaluationContext implements EvaluationContext {
 			public TypedValue read(EvaluationContext context, Object target, String name) throws AccessException {
 				var read = super.read(context, target, name);
 				if (read == null || read.getValue() == null) {
-					return new TypedValue(new NopeObject());
+					return nopeValue;
 				}
 				return read;
 			}
@@ -128,43 +128,7 @@ public class NopeEvaluationContext implements EvaluationContext {
 
 	@Override
 	public TypeConverter getTypeConverter() {
-		return new TypeConverter() {
-			@Override
-			public Object convertValue(Object value, TypeDescriptor sourceType, TypeDescriptor targetType) {
-				if (Collection.class.isAssignableFrom(targetType.getObjectType()) && value instanceof NopeObject) {
-					return List.of(nope);
-				}
-				if (targetType.getObjectType().isAssignableFrom(value.getClass())) {
-					return value;
-				}
-				return getDefault(targetType.getObjectType());
-			}
-
-			private Object getDefault(Class<?> objectType) {
-				if (objectType == Boolean.class || objectType == boolean.class) {
-					return true;
-				} else if (objectType == Integer.class || objectType == int.class) {
-					return 0;
-				} else if (objectType == Long.class || objectType == long.class) {
-					return 0l;
-				} else if (objectType == Float.class || objectType == float.class) {
-					return 0f;
-				} else if (objectType == Double.class || objectType == double.class) {
-					return 0d;
-				}
-				try {
-					return objectType.getDeclaredConstructor().newInstance();
-				} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-					log.error("There was an error while instanciating a given type", e);
-					return null;
-				}
-			}
-
-			@Override
-			public boolean canConvert(TypeDescriptor sourceType, TypeDescriptor targetType) {
-				return true;
-			}
-		};
+		return new DefaultTypeConverter();
 	}
 
 	@Override
