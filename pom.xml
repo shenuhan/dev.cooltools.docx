@@ -40,7 +40,7 @@
 		<maven.compiler.target>11</maven.compiler.target>
 
 		<docx4j.version>11.1.3</docx4j.version>
-		<spring-el.version>5.1.9.RELEASE</spring-el.version>
+		<spring-el.version>5.2.21.RELEASE</spring-el.version>
 	</properties>
 
 	<dependencies>
